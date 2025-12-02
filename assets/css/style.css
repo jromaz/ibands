@@ -1,0 +1,872 @@
+/* =========================================================
+   BandS Inversiones - Style.css (UX mejorada)
+   ========================================================= */
+
+/* Paleta principal */
+:root {
+  --bands-orange: #ff6a00;
+  --bands-orange-dark: #e05400;
+  --bands-dark: #1f1f1f;
+  --bands-light: #f5f5f7;
+  --bands-border: #dcdce0;
+}
+
+/* Base */
+body {
+  background: var(--bands-light);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--bands-dark);
+  overflow-x: hidden;
+
+  /* Para que el contenido quede entre header y footer */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main.bands-main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-bands {
+  color: var(--bands-orange);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =========================================================
+   NAVBAR - lujo silencioso con logo BandS a la izquierda
+   ========================================================= */
+
+.bands-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1040;
+
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px) saturate(160%);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  min-height: 64px;
+
+  transition:
+    padding .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.bands-navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Marca izquierda: logo + texto */
+.bands-navbar .navbar-brand {
+  padding: 0;
+  font-size: 0.95rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+}
+
+/* Logo BandS: controla el alto de la barra */
+.bands-logo-icon {
+  height: 48px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.10));
+  transition:
+    height .22s ease,
+    opacity .22s ease,
+    transform .22s ease;
+}
+
+/* Links menú */
+.bands-navbar .nav-link {
+  font-size: 0.88rem;
+  color: #6b7280;
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+  transition: all .2s ease;
+}
+
+.bands-navbar .nav-link:hover,
+.bands-navbar .nav-link.active {
+  background: rgba(255, 106, 0, 0.12);
+  color: var(--bands-orange-dark);
+}
+
+/* Navbar compacto al hacer scroll */
+.bands-navbar-compact {
+  background: rgba(255, 255, 255, 0.9);
+  padding-top: 0.12rem !important;
+  padding-bottom: 0.12rem !important;
+  min-height: 56px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.bands-navbar-compact .bands-logo-icon {
+  height: 40px;
+  opacity: 0.95;
+  transform: translateY(1px);
+}
+
+/* Espaciador (para que no se solape el contenido) */
+.bands-navbar-spacer {
+  height: 72px;
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL - MAPA 75% + LISTA 25%
+   ========================================================= */
+
+.bands-main {
+  min-height: 0;
+}
+
+/* Sección mapa */
+.bands-map-shell {
+  margin-top: 0;
+  flex: 1 1 auto;
+}
+
+/* Fila principal (alto pantalla menos navbar) */
+.bands-map-row {
+  min-height: 0;
+  height: calc(100vh - 72px);
+}
+
+/* Columna mapa (75%) */
+.bands-map-col {
+  position: relative;
+}
+
+/* Mapa */
+.bands-map {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.bands-map-full {
+  width: 100%;
+  height: 100%;
+}
+
+/* Columna lista derecha (25%) tipo Airbnb */
+.bands-list-col {
+  background: #ffffff;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: -8px 0 24px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 72px);
+}
+
+/* Header lista derecha */
+.bands-list-header {
+  padding: 0.8rem 1rem 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.bands-list-subheader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding-top: 0.25rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+/* Contenedor scrollable de cards (derecha) */
+.bands-investments-list-aside {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-bottom: 0.75rem !important;
+}
+
+.bands-investments-list-aside::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bands-investments-list-aside::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+.bands-investments-list-aside::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
+}
+
+/* Lista mobile (debajo del mapa) */
+.bands-mobile-list-section {
+  margin-top: 0.75rem;
+  margin-bottom: 4rem;
+}
+
+.bands-investments-list-mobile {
+  padding-bottom: 4rem;
+}
+
+/* GRID de cards */
+.bands-investments-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .bands-investments-list {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .bands-map-row {
+    height: auto;
+    min-height: 60vh;
+  }
+
+  .bands-map {
+    min-height: 60vh;
+  }
+
+  .bands-list-col {
+    display: none;
+  }
+}
+
+/* =========================================================
+   TARJETAS DE INVERSIONES (Airbnb-like)
+   ========================================================= */
+
+.bands-card {
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+}
+
+/* Estado normal y hover */
+.bands-card-inv {
+  cursor: pointer;
+  transition:
+    transform .16s ease,
+    box-shadow .16s ease,
+    border-color .16s ease,
+    background .16s ease;
+}
+
+.bands-card-inv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+  border-color: rgba(255, 106, 0, 0.35);
+}
+
+/* Estado ACTIVO (cuando se selecciona desde el mapa o card) */
+.bands-card-inv-active {
+  border-color: var(--bands-orange);
+  box-shadow: 0 18px 40px rgba(255, 106, 0, 0.35);
+  background: linear-gradient(145deg, #fff7f0, #ffffff);
+}
+
+/* Imagen card */
+.bands-card-img-wrapper {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 16px;
+  position: relative;
+}
+
+.bands-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform .3s ease;
+}
+
+.bands-card-inv:hover .bands-card-img {
+  transform: scale(1.05);
+}
+
+/* Botón favorito */
+.bands-fav-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.95);
+  color: #6b7280;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
+}
+
+.bands-fav-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06);
+}
+
+.bands-fav-active {
+  background: #f97373;
+  color: #fff;
+}
+
+/* Tiers */
+.bands-tier-diamante {
+  background: linear-gradient(135deg, #4fd1ff, #a855f7);
+  color: #ffffff;
+  border: none;
+}
+
+.bands-tier-oro {
+  background: linear-gradient(135deg, #facc15, #f97316);
+  color: #3b2f0b;
+  border: none;
+}
+
+.bands-tier-plata {
+  background: linear-gradient(135deg, #e5e7eb, #9ca3af);
+  color: #111827;
+  border: none;
+}
+
+/* Texto truncado (solo donde lo necesitemos) */
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Progress bar */
+.bands-progress-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.bands-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--bands-orange), var(--bands-orange-dark));
+}
+
+/* =========================================================
+   MAPA / POPUPS / MARKERS
+   ========================================================= */
+
+.bands-popup-img-wrapper {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.bands-popup-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.maplibregl-popup-content {
+  border-radius: 14px !important;
+  padding: 0.7rem 0.75rem 0.5rem 0.75rem !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.maplibregl-popup-tip {
+  border-top-color: #ffffff !important;
+}
+
+/* Marker del mapa */
+.bands-map-marker {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 2px solid var(--bands-orange);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    border-color .15s ease,
+    background .15s ease;
+}
+
+/* Marker activo (coincide con card activa) */
+.bands-map-marker-active {
+  transform: scale(1.25) translateY(-2px);
+  border-color: var(--bands-orange-dark);
+  background: var(--bands-orange);
+  box-shadow: 0 10px 26px rgba(255, 106, 0, 0.6);
+}
+
+/* =========================================================
+   Botonera QR / Oculus en cards de inversión
+   ========================================================= */
+
+.bands-card-actions {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.bands-btn-outline {
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition:
+    background .15s ease,
+    border-color .15s ease,
+    color .15s ease,
+    box-shadow .15s ease,
+    transform .12s ease;
+}
+
+.bands-btn-outline i {
+  font-size: 1rem;
+}
+
+/* Versión sólo icono (cards derecha) */
+.bands-btn-icon-only {
+  padding: 0.25rem 0.45rem;
+  min-width: 36px;
+}
+
+.bands-btn-outline:hover {
+  background: rgba(255, 106, 0, 0.06);
+  border-color: rgba(255, 106, 0, 0.4);
+  color: #c2410c;
+  box-shadow: 0 0 0 1px rgba(255, 106, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 576px) {
+  .bands-btn-outline {
+    font-size: 0.78rem;
+  }
+}
+
+/* =========================================================
+   FILTROS FLOTANTES SOBRE EL MAPA
+   ========================================================= */
+
+.bands-filters-floating {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1030;
+  pointer-events: none;
+  /* el inner se encarga del click */
+}
+
+.bands-filters-inner {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.23);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.bands-filters-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+}
+
+.bands-filters-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Chips base */
+.bands-chip,
+.bands-chip-mobile {
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #f9fafb;
+  padding: 0.15rem 0.65rem;
+  font-size: 0.78rem;
+  color: #4b5563;
+  cursor: pointer;
+  transition:
+    background .15s ease,
+    border-color .15s ease,
+    color .15s ease,
+    transform .12s ease;
+}
+
+.bands-chip:hover,
+.bands-chip-mobile:hover {
+  background: #ffffff;
+  border-color: rgba(255, 106, 0, 0.38);
+  color: #c2410c;
+}
+
+.bands-chip-active,
+.bands-chip-mobile.bands-chip-active {
+  background: linear-gradient(135deg, #ff6a00, #e05400);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+
+/* Pill "Cerca mío" */
+.bands-pill-ghost {
+  border-radius: 999px;
+  border: 1px dashed rgba(148, 163, 184, 0.9);
+  background: #ffffff;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.78rem;
+  color: #4b5563;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition:
+    background .15s ease,
+    border-color .15s ease,
+    color .15s ease,
+    box-shadow .15s ease;
+}
+
+.bands-pill-ghost:hover {
+  background: #f9fafb;
+  border-color: rgba(255, 106, 0, 0.35);
+  color: #c2410c;
+}
+
+.bands-pill-ghost-active {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.55);
+  color: #166534;
+}
+
+/* Versión MOBILE (parte inferior del mapa) */
+.bands-filters-mobile {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  z-index: 1025;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bands-filters-mobile-inner {
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 999px;
+  padding: 0.35rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.bands-filters-mobile-inner .bands-chip-mobile {
+  background: rgba(249, 250, 251, 0.96);
+  border-color: rgba(148, 163, 184, 0.6);
+  font-size: 0.72rem;
+}
+
+.bands-filters-mobile-inner .bands-chip-mobile.bands-chip-active {
+  background: linear-gradient(135deg, #ff6a00, #e05400);
+  color: #ffffff;
+}
+
+.bands-filters-mobile-inner .bands-pill-ghost {
+  border-color: rgba(148, 163, 184, 0.9);
+  background: rgba(15, 23, 42, 0.98);
+  color: #e5e7eb;
+  font-size: 0.72rem;
+}
+
+/* =========================================================
+   PANEL OPORTUNIDADES - ALTURA COMPLETA LISTAS
+   ========================================================= */
+
+#investmentsList {
+  max-height: none;
+  overflow-y: visible;
+}
+
+#investmentsListMobile {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* =========================================================
+   LOGIN - Estilo tipo Airbnb + sombra naranja
+   ========================================================= */
+
+.bands-login-main {
+  min-height: 100vh;
+  padding-top: 6rem;
+  /* respeta navbar fixed-top */
+  padding-bottom: 3rem;
+  background: radial-gradient(circle at top left, #fff7ec 0, #f5f5f5 40%, #f0f0f0 100%);
+  display: flex;
+  align-items: center;
+}
+
+.bands-login-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  /* Sombra naranja tipo McLaren / BandS */
+  box-shadow:
+    0 18px 45px rgba(255, 140, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(4px);
+}
+
+.bands-login-card h1 {
+  font-weight: 600;
+}
+
+.bands-login-card .form-control,
+.bands-login-card .form-select {
+  border-radius: 10px;
+}
+
+.bands-login-card .btn-warning {
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
+}
+
+.bands-login-card .btn-warning:hover {
+  filter: brightness(1.02);
+}
+
+@media (max-width: 575.98px) {
+  .bands-login-main {
+    padding-top: 5rem;
+  }
+
+  .bands-login-card {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+/* =========================================================
+   LANDING PAGE (Airbnb Replica)
+   ========================================================= */
+
+/* Categories Bar */
+.bands-categories-bar {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+.bands-categories-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.bands-category-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 64px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, border-bottom 0.2s ease;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  color: #4b5563;
+}
+
+.bands-category-item:hover {
+  opacity: 1;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.bands-category-item.active {
+  opacity: 1;
+  border-bottom-color: #000;
+  color: #000;
+}
+
+.bands-category-item span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Search Bar (Navbar) */
+.bands-search-bar {
+  transition: box-shadow 0.2s ease;
+}
+
+.bands-search-bar:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover-bg-light:hover {
+  background-color: #f8f9fa;
+}
+
+/* Grid adjustments for Landing */
+.bands-investments-grid-landing {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .bands-investments-grid-landing {
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .bands-investments-grid-landing {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+
+/* Search Component Animations */
+.hover-scale {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+.search-tab {
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+  border: none !important;
+  /* Force remove borders */
+  background: transparent;
+  position: relative;
+}
+
+.search-tab:hover {
+  color: #000 !important;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 999px;
+  /* Rounded hover effect */
+}
+
+.search-tab.active {
+  color: #000 !important;
+  font-weight: 700;
+  cursor: default;
+}
+
+/* Optional: Add a small dot or underline for active state if needed, but user asked for subtle */
+
+
+/* Input Focus States */
+.bands-search-form .form-control:focus,
+.bands-search-form .form-select:focus {
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.1);
+  border-color: rgba(255, 106, 0, 0.3);
+}
+
+/* Airbnb-style Search Pill */
+.bands-search-pill {
+  background: #fff;
+  border-radius: 999px;
+  height: 66px;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15) !important;
+}
+
+.bands-search-field {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+  padding-left: 24px;
+}
+
+.bands-search-field:hover {
+  background-color: #ebebeb;
+}
+
+.bands-search-field input::placeholder {
+  color: #6b7280;
+  opacity: 0.9;
+}
+
+.bands-search-divider {
+  width: 1px;
+  height: 32px;
+  background-color: #ddd;
+  flex-shrink: 0;
+}
+
+.bands-search-field:hover+.bands-search-divider,
+.bands-search-divider:has(+ .bands-search-field:hover) {
+  opacity: 0;
+}
+
+.min-h-input {
+  min-height: 24px;
+}
+
+.hover-bg-gray:hover {
+  background-color: #f7f7f7;
+}
+
+.bands-search-pill .form-control:focus,
+.bands-search-pill .form-select:focus,
+.bands-search-pill .form-check-input:focus {
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
+}
