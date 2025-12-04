@@ -12,23 +12,33 @@ $user = current_user();
            alt="BandS Inversiones"
            class="me-2"
            style="height: 32px; width:auto;">
-      <span class="d-none d-lg-inline fw-bold text-danger">BandS</span>
+      <!-- Text removed as requested -->
     </a>
 
     <!-- Search Bar (Removed as per request, moving to body) -->
     <div class="d-none d-md-flex flex-grow-1 justify-content-center">
-      <!-- Espacio vacío o reservado si se quiere centrar algo luego -->
     </div>
 
     <!-- User Menu -->
-    <div class="d-flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-3">
+      
+      <!-- Blue Mode Toggle -->
+      <div class="form-check form-switch m-0">
+        <input class="form-check-switch" type="checkbox" id="blueModeToggle" style="cursor: pointer;">
+        <label class="form-check-label small text-muted" for="blueModeToggle"><i class="bi bi-palette"></i></label>
+      </div>
+
       <?php if ($user): ?>
         <!-- Logged in: Show Name/Avatar -->
         <div class="dropdown">
           <button class="btn border rounded-pill d-flex align-items-center gap-2 p-1 ps-3 shadow-sm bg-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="fw-semibold small"><?= htmlspecialchars($user['name']) ?></span>
             <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden" style="width: 30px; height: 30px;">
-              <i class="bi bi-person-fill"></i>
+              <?php if (!empty($user['image_url'])): ?>
+                  <img src="<?= htmlspecialchars($user['image_url']) ?>" alt="User" style="width: 100%; height: 100%; object-fit: cover;">
+              <?php else: ?>
+                  <span class="small fw-bold"><?= strtoupper(substr($user['name'], 0, 2)) ?></span>
+              <?php endif; ?>
             </div>
           </button>
           <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 mt-2 p-2" style="min-width: 240px;">

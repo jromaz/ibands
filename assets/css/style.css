@@ -869,4 +869,28 @@ a {
   box-shadow: none;
   border-color: transparent;
   background-color: transparent;
+}/* Blue Mode */
+body.blue-mode {
+    --bs-primary: #0d6efd;
+    --bs-warning: #0dcaf0;
+    /* Change warning (orange) to cyan/blueish */
+}
+
+body.blue-mode .text-danger {
+    color: #0d6efd !important;
+    /* BrandS red to blue */
+}
+
+body.blue-mode .btn-danger {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+body.blue-mode .badge.bg-warning {
+    background-color: #cff4fc !important;
+    color: #055160 !important;
+}
+
+body.blue-mode .bi-star-fill {
+    color: #0d6efd !important;
 }

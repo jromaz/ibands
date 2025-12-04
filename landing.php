@@ -205,6 +205,11 @@ $pageTitle = "Inicio";
     </div>
   </div>
 
+  <!-- Map Drawer (Accordion Style) -->
+  <div id="mapDrawer" class="container-fluid px-0 d-none" style="transition: height 0.3s ease-in-out; overflow: hidden;">
+    <div id="map" style="width: 100%; height: 100%;"></div>
+  </div>
+
   <!-- Listings Grid -->
   <div class="container-fluid px-4 px-md-5">
     <div id="investmentsList" class="bands-investments-list bands-investments-grid-landing pb-5">
@@ -221,51 +226,15 @@ $pageTitle = "Inicio";
 
 <!-- Toggle Map Button (Floating) -->
 <div class="fixed-bottom d-flex justify-content-center pb-4 pointer-events-none">
-  <a href="index.php" class="btn btn-dark rounded-pill shadow-lg px-4 py-2 pointer-events-auto d-flex align-items-center gap-2" style="z-index: 1050;">
+  <button id="toggleMapBtn" class="btn btn-dark rounded-pill shadow-lg px-4 py-2 pointer-events-auto d-flex align-items-center gap-2" style="z-index: 1050;">
     <span>Mostrar mapa</span>
     <i class="bi bi-map-fill"></i>
-  </a>
+  </button>
 </div>
 
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Manually trigger fetchInvestments since we don't have a map to trigger it via initMap
-  if (typeof fetchInvestments === 'function') {
-    fetchInvestments();
-  }
-});
-
-function switchSearchTab(btn, targetId) {
-  // Update Tabs UI
-  document.querySelectorAll('.search-tab').forEach(t => {
-    t.classList.remove('active', 'text-dark');
-    t.classList.add('text-muted');
-    t.style.fontWeight = '500';
-  });
-  
-  btn.classList.remove('text-muted');
-  btn.classList.add('active', 'text-dark');
-  btn.style.fontWeight = '700';
-
-  // Update Fields Visibility
-  document.querySelectorAll('.search-fields-group').forEach(g => g.classList.add('d-none'));
-  const targetGroup = document.getElementById('fields-' + targetId);
-  if (targetGroup) {
-    targetGroup.classList.remove('d-none');
-    
-    // Optional: Add a small animation fade-in
-    targetGroup.style.opacity = 0;
-    setTimeout(() => {
-      targetGroup.style.transition = 'opacity 0.3s ease';
-      targetGroup.style.opacity = 1;
-    }, 10);
-  }
-
-  // Update Hidden Input
-  document.getElementById('searchCategory').value = targetId;
-}
-</script>
+<!-- Landing Page Specific Logic -->
+<script src="assets/js/landing.js"></script>
 
